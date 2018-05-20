@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import InitFlubber from "../assets/js/flubber/index";
+// import InitFlubber from "../assets/js/flubber/index";
 
 export default {
   name: "home",

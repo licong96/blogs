@@ -103,6 +103,8 @@ export default {
       let pages = this.pages;
       let {transY, pointer} = this._calculative();  // 偏移和景深
 
+      console.log(transY, pointer)
+
       console.log(pointer)
       
       for (let i = 0; i < pages.length; i++) {
@@ -119,7 +121,7 @@ export default {
     buildStack() {
       let pages = this.pages;
       let current = 0;
-      let transY = this._calculative();
+      // let transY = this._calculative();
 
       for (let i = 0; i < pages.length; ++i) {
         let page = pages[i];
