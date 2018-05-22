@@ -16,13 +16,13 @@
           <ul class="flubber-quote show">
             <li class="text" style="display: list-item;;">你好！</li>
             <li class="text" style="display: none">我是黎聪</li>
-            <li class="text" style="display: none;">一位热爱前端的开发者</li>
+            <li class="text" style="display: none;">一位略懂前端的开发者</li>
             <li class="text" style="display: none;">这里有我的介绍</li>
           </ul>
         </div>
       </div>
       <!-- svg -->
-      <div class="squadDivider-nJvGZ-"><svg class="wave-1hkxOo" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none"><path class="wavePath-haxJK1" d="M826.337463,25.5396311 C670.970254,58.655965 603.696181,68.7870267 447.802481,35.1443383 C293.342778,1.81111414 137.33377,1.81111414 0,1.81111414 L0,150 L1920,150 L1920,1.81111414 C1739.53523,-16.6853983 1679.86404,73.1607868 1389.7826,37.4859505 C1099.70117,1.81111414 981.704672,-7.57670281 826.337463,25.5396311 Z" fill="#f8f9fd"></path></svg></div>
+      <div class="squadDivider-nJvGZ"><svg class="wave-1hkxOo" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none"><path class="wavePath-haxJK1" d="M826.337463,25.5396311 C670.970254,58.655965 603.696181,68.7870267 447.802481,35.1443383 C293.342778,1.81111414 137.33377,1.81111414 0,1.81111414 L0,150 L1920,150 L1920,1.81111414 C1739.53523,-16.6853983 1679.86404,73.1607868 1389.7826,37.4859505 C1099.70117,1.81111414 981.704672,-7.57670281 826.337463,25.5396311 Z" fill="#f8f9fd"></path></svg></div>
     </section>
     <!-- skill -->
     <section class="skill">
@@ -49,34 +49,56 @@
     </section>
     <!-- works -->
     <section class="works">
-      <div class="container">
-        <div class="phone">
-          
-        </div>
+      <div class="list-1">
+        <gallery></gallery>
+      </div>
+      <div class="list-2">
+        <gallery></gallery>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-// import InitFlubber from "../assets/js/flubber/index";
+  // import InitFlubber from "../assets/js/flubber/index";
+  import Gallery from '@/components/Gallery';
 
-export default {
-  name: "home",
-  data() {
-    return {
+  export default {
+    name: "home",
+    data() {
+      return {
+        swiperData: [
+          {
+            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
+          },
+          {
+            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
+          },
+          {
+            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
+          },
+          {
+            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
+          },
+          {
+            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
+          },
+        ]
+      }
+    },
+    mounted() {
+      // InitFlubber(); // 一只鸭子在哔哔
+    },
+    components: {
+      Gallery
     }
-  },
-  mounted() {
-    // InitFlubber(); // 一只鸭子在哔哔
-  }
-};
+  };
 </script>
 
 <style scoped lang="scss">
 @import "../assets/scss/mixin.scss";
-
 .home {
+  overflow: hidden;
 }
 // 介绍
 .introduce {
@@ -126,7 +148,7 @@ export default {
     }
   }
   // svg
-  .squadDivider-nJvGZ- {
+  .squadDivider-nJvGZ {
     bottom: 0;
     color: #ef5350;
     left: 0;
@@ -137,7 +159,7 @@ export default {
     display: block;
   }
   .wavePath-haxJK1 {
-    // animation: waveDividerAnimation-2m2aau 16s linear infinite alternate;
+    animation: waveDividerAnimation-2m2aau 16s linear infinite alternate;
   }
 
   @keyframes waveDividerAnimation-2m2aau {
@@ -313,7 +335,7 @@ export default {
   @include MQ(xl) {
     .skill-bg {
       padding-top: 100px;
-      padding-bottom: 120px;
+      padding-bottom: 350px;
     }
     .list {
       margin: 20px 20px 70px 20px;
@@ -325,14 +347,35 @@ export default {
 // 作品
 .works {
   width: 100%;
-  background-color: $color-primary;
-  .phone {
-    width: 100%;
-    // height: 667px;
-    background-image: url('../assets/image/iphone.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  .list-1 {
+    position: relative;
+    background-color: $color-primary;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      left: -10%;
+      right: -10%;
+      width: 120%;
+      height: 360px;
+      transform: rotate(8deg);
+      background-color: $color-primary;
+    }
+  }
+  .list-2 {
+    position: relative;
+    background-color: $color-light;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      left: -10%;
+      right: -10%;
+      width: 120%;
+      height: 360px;
+      transform: rotate(-8deg);
+      background-color: $color-light;
+    }
   }
 }
 

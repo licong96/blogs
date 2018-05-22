@@ -50,34 +50,39 @@ export default {
       clientWdith: document.body.clientWidth || document.documentElement.clientWidth, // 文档宽度
       pageTransY: {   // 这是导航的高度，也是页面下移的位置，为了兼容不同设备
         default: {
-          view: 0,
-          pointer: 20,
-          excur: 284 + 220    // 是因为有300的景深，分开写更利于描述
+          view: 0,    // 屏幕视图
+          pointer: 20,  // 景深
+          excur: 320  // 偏移
         },
         xs: {
           view: 360,
           pointer: 26,
-          excur: 340 + 250
+          excur: 400
         },
         sm: {
           view: 576,
           pointer: 30,
-          excur: 380 + 270
+          excur: 440
         },
         md: {
           view: 768,
           pointer: 40,
-          excur: 420 + 280
+          excur: 480
         },
         lg: {
           view: 992,
           pointer: 50,
-          excur: 460 + 300
+          excur: 560
         },
         xl: {
           view: 1200,
           pointer: 50,
-          excur: 500 + 300
+          excur: 600
+        },
+        xxl: {
+          view: 1600,
+          pointer: 60,
+          excur: 700
         },
       }
     };
@@ -97,21 +102,20 @@ export default {
       this.isNavOpen = !this.isNavOpen; // 是否打开导航
       this.isStackOpen = !this.isStackOpen; // 是否缩小页面
       this.isButtonOpen = !this.isButtonOpen; // 改变按钮形状
-
-      this.overflowHtml();
-
       let pages = this.pages;
       let {transY, pointer} = this._calculative();  // 偏移和景深
 
-      console.log(transY, pointer)
-
-      console.log(pointer)
+      this.overflowHtml();
       
-      for (let i = 0; i < pages.length; i++) {
+      for (let i = 0, leng = pages.length; i < leng; i++) {
         if (this.isNavOpen) {
+          pages[i].style.height = this.clientWdith + 'px';
           pages[i].style.WebkitTransform = `translate3d(0, ${transY}px, ${parseInt(-1 * 200 - pointer * i)}px)`;
           pages[i].style.transform = `translate3d(0, ${transY}px, ${parseInt(-1 * 200 - pointer * i)}px)`;
         } else {
+          setTimeout(() => {
+            pages[i].style.height = 'auto';
+          }, 500);
           pages[i].style.WebkitTransform = "translate3d(0,0,0)";
           pages[i].style.transform = "translate3d(0,0,0)";
         }
@@ -121,15 +125,12 @@ export default {
     buildStack() {
       let pages = this.pages;
       let current = 0;
-      // let transY = this._calculative();
 
       for (let i = 0; i < pages.length; ++i) {
         let page = pages[i];
 
         if (current !== i) {
           classie.add(page, "page--inactive");
-          // page.style.WebkitTransform = `translate3d(0, ${transY}px, -300px)`;
-          // page.style.transform = `translate3d(0, ${transY}px, -300px)`;
         } else {
           classie.remove(page, "page--inactive");
         }
@@ -317,11 +318,11 @@ export default {
     pointer-events: auto;
     background-color: #ef5350;
     box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.45s, opacity 0.45s;
+    transition: transform 0.5s, opacity 0.5s;
   }
   .pages-stack--open .page {
     cursor: pointer;
-    transition: transform 0.45s, opacity 0.45s;
+    transition: transform 0.5s, opacity 0.5s;
     transition-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
   }
   .page--inactive {
