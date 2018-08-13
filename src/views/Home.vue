@@ -28,19 +28,18 @@
     <section class="skill">
       <div class="skill-bg">
         <div class="container">
-          <h3 class="title">我的技能</h3>
+          <h3 class="title">我的技能汇总</h3>
           <div class="row">
-            <div class="col-md-4" v-for="(item, index) in 9" :key="index">
-              <div class="list">
+            <div class="col-lg-4 col-md-6" v-for="(item, index) in 9" :key="index">
+              <div class="list list--show">
                 <svg class="icon" aria-hidden="true">
                   <use xlink:href="#icon-html"></use>
                 </svg>
                 <p class="tag">HTML</p>
-                <span class="arrow">
-                  <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-you"></use>
-                  </svg>
-                </span>
+                <!-- 基本介绍 -->
+                <div class="list-desc">
+                  <p class="list-desc-p">浏览器内核、渲染原理、依赖管理、兼容性、html5（本地存储、多媒体、语义化标签、新的属性、新的API）。</p>
+                </div>
               </div>
             </div>
           </div>
@@ -50,10 +49,10 @@
     <!-- works -->
     <section class="works">
       <div class="list-1">
-        <gallery></gallery>
+        <gallery :imgData="inquiryData" parentClass="parent-galler-1"></gallery>
       </div>
       <div class="list-2">
-        <gallery></gallery>
+        <gallery :imgData="inquiryData2" parentClass="parent-galler-2"></gallery>
       </div>
     </section>
   </div>
@@ -62,29 +61,21 @@
 <script>
   // import InitFlubber from "../assets/js/flubber/index";
   import Gallery from '@/components/Gallery';
+  import { inquiryData, inquiryData2 } from '../data/inquiry.js'
+
+  console.log(inquiryData2)
 
   export default {
     name: "home",
     data() {
       return {
-        swiperData: [
-          {
-            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
-          },
-          {
-            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
-          },
-          {
-            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
-          },
-          {
-            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
-          },
-          {
-            pic: 'http://tylerstober.com/assets/img/cardiact/static/sthree.jpg'
-          },
-        ]
+        inquiryData: [],
+        inquiryData2: [],
       }
+    },
+    created() {
+      this.inquiryData = inquiryData;
+      this.inquiryData2 = inquiryData2;
     },
     mounted() {
       // InitFlubber(); // 一只鸭子在哔哔
@@ -159,7 +150,7 @@
     display: block;
   }
   .wavePath-haxJK1 {
-    animation: waveDividerAnimation-2m2aau 16s linear infinite alternate;
+    // animation: waveDividerAnimation-2m2aau 16s linear infinite alternate;
   }
 
   @keyframes waveDividerAnimation-2m2aau {
@@ -277,14 +268,8 @@
     cursor: pointer;
     transition: all .3s;
     &:hover {
-      transform: translateY(-8px);
       .icon {
         opacity: 1;
-      }
-      .arrow .icon {
-        animation-name: arrow-right;
-        animation-duration: 1s;
-        animation-iteration-count: infinite;
       }
     }
     .icon {
@@ -297,29 +282,22 @@
       width: 100%;
       text-align: center;
     }
-    .arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .list-desc {
+      display: none;
       position: absolute;
-      bottom: -25px;
-      left: 50%;
-      border-radius: 4px;
-      margin-left: -27px;
-      width: 56px;
-      height: 50px;
-      background-color: #000;
-      .icon {
-        opacity: 1;
-        font-size: 24px;
-        color: #fff;
-      }
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0 15px;
+      background-color: #fff;
+      transition: all .3s;
     }
   }
   @include MQ(md) {
     .skill-bg {
       padding-top: 30px;
-      padding-bottom: 50px;
+      padding-bottom: 120px;
     }
     .list {
       margin: 10px 10px 60px 10px;
@@ -329,7 +307,7 @@
   @include MQ(lg) {
     .skill-bg {
       padding-top: 50px;
-      padding-bottom: 100px;
+      padding-bottom: 200px;
     }
   }
   @include MQ(xl) {
@@ -346,8 +324,10 @@
 
 // 作品
 .works {
+  margin-top: 120px;
   width: 100%;
-  .list-1 {
+  .list-1,
+  .list-2 {
     position: relative;
     background-color: $color-primary;
     &:before {
@@ -363,32 +343,36 @@
     }
   }
   .list-2 {
-    position: relative;
     background-color: $color-light;
     &:before {
-      content: "";
-      position: absolute;
-      top: -200px;
-      left: -10%;
-      right: -10%;
-      width: 120%;
-      height: 360px;
       transform: rotate(-8deg);
       background-color: $color-light;
     }
   }
+  // 兼容样式
+  .list-1:before {
+    display: none;
+  }
+  @include MQ(md) {
+    .list-1:before {
+      display: block;
+    }
+  }
+  @include MQ(lg) {
+    margin-top: 50px;
+  }
+  @include MQ(xl) {
+    margin-top: 0;
+  }
 }
 
-
-@keyframes arrow-right {
+@keyframes list-desc {
   0% {
-    transform: translateX(0);
-  }
-  80% {
-    transform: translateX(5px);
+    opacity: 0;
   }
   100% {
-    transform: translateX(0);
+    opacity: 1;
   }
 }
+
 </style>

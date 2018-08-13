@@ -1,9 +1,10 @@
-export default function gallery(){
+export default function gallery(parent){
     var 
-        $gallery = $(".slider-one-imgs"),
-        $galleryPictures = $(".slider-one-imgs"),
-        $galleryPicture = $(".slider-one-img"),
-        $galleryPicture = $(".slider-one-background-img"),
+        parents = $("." + parent),
+        $gallery = parents.find($(".slider-one-imgs")),
+        $galleryPictures = parents.find($(".slider-one-imgs")),
+        $galleryPicture = parents.find($(".slider-one-img")),
+        $galleryPicture = parents.find($(".slider-one-background-img")),
 
         lastPos = {x:0},
         galleryPos = {x:0},
@@ -31,7 +32,7 @@ export default function gallery(){
                 setGalleryPos(i);
         });
 
-        $(".pag-1 li").eq(i).click(function(){
+        parents.find($(".pag-1 li")).eq(i).click(function(){
             setGalleryPos(i);
         })
     });
@@ -62,12 +63,12 @@ export default function gallery(){
             currentImage=_currentImage;
 
             // Descriptions for Screens
-            $(".first-selected").removeClass('first-selected');
-            $(".first-display-descp li").eq(currentImage).addClass('first-selected');
+            parents.find($(".first-selected")).removeClass('first-selected');
+            parents.find($(".first-display-descp li")).eq(currentImage).addClass('first-selected');
 
             // Pagination
-            $(".pag-1-selected").removeClass('pag-1-selected');
-            $(".pag-1 li").eq(currentImage).addClass('pag-1-selected');
+            parents.find($(".pag-1-selected")).removeClass('pag-1-selected');
+            parents.find($(".pag-1 li")).eq(currentImage).addClass('pag-1-selected');
         }
     }
 
@@ -152,159 +153,4 @@ export default function gallery(){
     }
 
     setGalleryPos(0,false);
-
-
-    // Second Mobile Display
-
-    var 
-        $galleryTwo = $(".slider-two-imgs"),
-        $galleryTwoPictures = $(".slider-two-imgs"),
-        $galleryTwoPicture = $(".slider-two-img"),
-        $galleryTwoPicture = $(".slider-two-background-img"),
-        lastTwoPos = {x:0},
-        galleryTwoPos = {x:0},
-        lastTwoDragPos={x:0},
-        dragTwoPos={x:0},
-        totalTwoDist=0,
-        distTwoThreshold=10,
-        distTwoLog=[],
-        distTwoLogLimit=10,
-        currentTwoImage = -1,
-        imageTwoWidth = 239,
-        imageTwoSpacing = 49,
-        imageTwoTotalWidth=imageTwoWidth+imageTwoSpacing,
-        speedTwoLog=[],
-        speedTwoLogLimit=5,
-        draggingTwo=false,
-        momentumTwoTween=null
-    ;
-
-    $galleryTwoPicture.each(function(i) {
-        var cur = $(this);
-        cur.click(function(){
-            if(Math.abs(totalTwoDist)<distTwoThreshold)
-                setGalleryTwoPos(i);
-        });
-
-        $(".pag-2 li").eq(i).click(function(){
-            setGalleryTwoPos(i);
-        })
-    });
-
-    function setGalleryTwoPos(v,anim){
-        if(typeof anim=="undefined") anim=true;
-        stopTwoMomentum();
-        TweenMax.to(galleryTwoPos,anim?0.8:0,{
-            x:-v*imageTwoTotalWidth,
-            ease:Quint.easeOut,
-            onUpdate:updateGalleryTwoPos,
-            onComplete:updateGalleryTwoPos
-        });
-    }
-
-    function updateGalleryTwoPos(){
-        TweenMax.set($galleryTwoPictures,{
-            x:galleryTwoPos.x+(0),
-            force3D:false,
-            lazy:true
-        });
-
-        var speed=lastTwoPos.x-galleryTwoPos.x;
-        lastTwoPos.x=galleryTwoPos.x;
-
-        var _currentTwoImage=Math.round(-galleryTwoPos.x/imageTwoTotalWidth);
-        if(_currentTwoImage!=currentTwoImage){
-            currentTwoImage=_currentTwoImage;
-
-            // Descriptions for Screens
-            $(".second-selected").removeClass('second-selected');
-            $(".second-display-descp li").eq(currentTwoImage).addClass('second-selected');
-
-            // Pagination
-            $(".pag-2-selected").removeClass('pag-2-selected');
-            $(".pag-2 li").eq(currentTwoImage).addClass('pag-2-selected');
-        }
-    }
-
-    $galleryTwo.mousedown(function(event){
-        event.preventDefault();
-        draggingTwo=true;
-        dragTwoPos.x=event.pageX;
-        lastTwoDragPos.x=dragTwoPos.x;
-        totalTwoDist=0;
-        distTwoLog=[];
-
-        stopTwoMomentum();
-
-        updateGalleryTwoPosLoop();
-    });
-
-    $(document).mousemove(function(event){
-        if(draggingTwo){
-            dragTwoPos.x=event.pageX;
-        }
-    });
-
-    function updateGalleryTwoPosLoop(){
-        if(draggingTwo){
-            updateGalleryTwoPos();
-            var distTwo=dragTwoPos.x-lastTwoDragPos.x;
-            lastTwoDragPos.x=dragTwoPos.x;
-            totalTwoDist+=distTwo;
-            distTwoLog.push(distTwo);
-            while(distTwoLog.length>distTwoLogLimit){
-                distTwoLog.splice(0,1);
-            };
-            galleryTwoPos.x+=distTwo;
-            requestAnimationFrame(updateGalleryTwoPosLoop)
-        }
-    }
-
-    $(document).mouseup(function(event){
-        if(draggingTwo){
-            draggingTwo=false;
-            var releaseTwoSpeed=0;
-            for (var i = 0; i < distTwoLog.length; i++) {
-                releaseTwoSpeed+=distTwoLog[i];
-            };
-
-            releaseTwoSpeed/=distTwoLog.length;
-
-            var targetX=galleryTwoPos.x+(releaseTwoSpeed*20);
-            targetX=Math.round(targetX/imageTwoTotalWidth)*imageTwoTotalWidth;
-            var targetTwoImage=-targetX/imageTwoTotalWidth;
-            var excessTwo=0;
-            if(targetTwoImage<0){
-                excessTwo=targetTwoImage;
-                targetTwoImage=0;
-            }else if(targetTwoImage>=$galleryTwoPicture.length){
-                excessTwo=targetTwoImage-($galleryTwoPicture.length-1);
-                targetTwoImage=$galleryTwoPicture.length-1;
-            }
-            if(excessTwo!=0){
-                targetX=-targetTwoImage*imageTwoTotalWidth;
-            }
-            momentumTwoTween=TweenMax.to(galleryTwoPos,1-(Math.abs(excessTwo)/20),{
-                x:targetX,
-                ease:Quint.easeOut,
-                onUpdate:updateGalleryTwoPos,
-                onComplete:updateGalleryTwoPos
-            });
-
-            if(Math.abs(totalTwoDist)>=distTwoThreshold){
-                event.preventDefault();
-                event.stopPropagation();
-            }
-        }
-    });
-
-    function stopTwoMomentum(){
-        if(momentumTwoTween!=null){
-            momentumTwoTween.kill();
-            momentumTwoTween=null;
-            updateGalleryTwoPos();
-        }
-    }
-
-    setGalleryTwoPos(0,false);
 }
