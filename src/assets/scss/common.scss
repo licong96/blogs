@@ -7,10 +7,21 @@
 html {
   box-sizing: border-box;
 }
+
 body {
   background-color: #000;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+p {
+  margin: 0;
+}
 .icon {
   width: 1em; height: 1em;
   vertical-align: -0.15em;

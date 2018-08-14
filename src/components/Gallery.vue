@@ -1,6 +1,6 @@
 <template lang="html">
-  <section class="deliverables">
-    <div class="contain mobile-display" :class="parentClass">
+  <section class="deliverables" :class="parentClass">
+    <div class="contain mobile-display">
       <div class="iphone-contain">
         <figure class="iphone">
           <div class="side-buttons"><div></div></div>
@@ -96,12 +96,42 @@
 </script>
 
 <style scoped lang="scss">
-	@import "../assets/scss/gallery.scss";
+  @import "../assets/scss/gallery.scss";
+  @import "../assets/scss/mixin.scss";
+  
   .deliverables {
     position: relative;
-    overflow: hidden;
+    padding-top: 50px;
     user-select: none;
+    background-color: $color-primary;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -180px;
+      left: -10%;
+      right: -10%;
+      z-index: 2;
+      width: 120%;
+      height: 360px;
+      background-color: $color-primary;
+      transform: rotate(8deg);
+    }
   }
+  .parent-galler-1 {
+    background-color: $color-primary;
+    &:before {
+      background-color: $color-primary;
+      transform: rotate(8deg);
+    }
+  }
+  .parent-galler-2 {
+    background-color: #212121;
+    &:before {
+      background-color: #212121;
+      transform: rotate(-8deg);
+    }
+  }
+
   .slider-one-imgs {
     font-size: 0;
   }

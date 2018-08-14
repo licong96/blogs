@@ -4,10 +4,10 @@
     <nav class="pages-nav" :class="{'pages-nav--open': isNavOpen}">
       <div class="container flex-center">
         <div class="row">
-          <div class="col-md-3 nav-link">Home</div>
-          <div class="col-md-3 nav-link">about</div>
-          <div class="col-md-3 nav-link">skill</div>
-          <div class="col-md-3 nav-link">works</div>
+          <div class="col-md-3 nav-link" @click="bindNavTo('home')">首页</div>
+          <div class="col-md-3 nav-link" @click="bindNavTo('skill')">技能</div>
+          <div class="col-md-3 nav-link" @click="bindNavTo('works')">作品</div>
+          <div class="col-md-3 nav-link" @click="bindNavTo('about')">关于</div>
         </div>
         <div class="row social">
           <div class="col-md-12 nav-social">
@@ -97,6 +97,13 @@ export default {
     }
   },
   methods: {
+    // 导航跳转
+    bindNavTo(path) {
+      this.onOpenMenu();
+      this.$router.push({
+        path: '/' + path
+      });
+    },
     // 打开导航菜单
     onOpenMenu() {
       this.isNavOpen = !this.isNavOpen; // 是否打开导航

@@ -63,8 +63,6 @@
   import Gallery from '@/components/Gallery';
   import { inquiryData, inquiryData2 } from '../data/inquiry.js'
 
-  console.log(inquiryData2)
-
   export default {
     name: "home",
     data() {
@@ -79,6 +77,7 @@
     },
     mounted() {
       // InitFlubber(); // 一只鸭子在哔哔
+
     },
     components: {
       Gallery
@@ -87,292 +86,291 @@
 </script>
 
 <style scoped lang="scss">
-@import "../assets/scss/mixin.scss";
-.home {
-  overflow: hidden;
-}
-// 介绍
-.introduce {
-  position: relative;
-  padding-top: 100px;
-  padding-bottom: 20px;
-  color: #fff;
-  text-align: center;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.2;
-    width: 100%;
-    height: 100%;
-    background-image: url("..//assets/image/top-bg.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    // background
+  @import "../assets/scss/mixin.scss";
+  .home {
+    overflow: hidden;
   }
-  .info {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 500px;
-  }
-  .title {
-    font-size: 30px;
-  }
-  .occupation {
-    font-size: 20px;
-  }
-  .good {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  // 鸭子在哔哔
-  .duck {
+  // 介绍
+  .introduce {
     position: relative;
-    height: 300px;
-    .flubber-quote {
-      padding: 4px;
-    }
-    .text {
-      font-size: 12px;
-    }
-  }
-  // svg
-  .squadDivider-nJvGZ {
-    bottom: 0;
-    color: #ef5350;
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
-  .wave-1hkxOo {
-    display: block;
-  }
-  .wavePath-haxJK1 {
-    // animation: waveDividerAnimation-2m2aau 16s linear infinite alternate;
-  }
-
-  @keyframes waveDividerAnimation-2m2aau {
-    0% {
-      d: path(
-        "M826.337463,25.5396311 C670.970254,58.655965 603.696181,68.7870267 447.802481,35.1443383 C293.342778,1.81111414 137.33377,1.81111414 0,1.81111414 L0,150 L1920,150 L1920,1.81111414 C1739.53523,-16.6853983 1679.86404,73.1607868 1389.7826,37.4859505 C1099.70117,1.81111414 981.704672,-7.57670281 826.337463,25.5396311 Z"
-      );
-    }
-
-    50% {
-      d: path(
-        "M655.558582,28.4898877 C500.191373,61.6062216 422.833785,83.5422763 266.940085,49.8995879 C112.480383,16.5663637 84.0992497,8.02840272 0,44.7243294 L0,150.727527 L1920,150.727527 L1920,49.8995879 C1580.91676,-34.8808285 1438.10804,73.6768193 1148.0266,38.0019829 C857.945166,2.32714659 810.925791,-4.62644617 655.558582,28.4898877 Z"
-      );
-    }
-
-    to {
-      d: path(
-        "M842.322034,38.0019829 C686.954825,71.1183168 623.386282,53.08497 467.492582,19.4422816 C313.032879,-13.8909426 84.0992497,8.02840272 0,44.7243294 L0,150.727527 L1920,150.727527 L1920,76.8685643 C1512.23604,-35.3595639 1568.70222,67.4289432 1278.62078,31.7541069 C988.539347,-3.92072949 997.689243,4.88564905 842.322034,38.0019829 Z"
-      );
-    }
-  }
-
-  @include MQ(xs) {
-    .duck {
-      .flubber-quote {
-        padding: 6px 18px;
-      }
-      .text {
-        font-size: 14px;
-      }
-    }
-  }
-  @include MQ(md) {
-    .title {
-      font-size: 34px;
-    }
-    .good {
-      font-size: 18px;
-    }
-    .duck {
-      .flubber {
-        left: 10%;
-      }
-      .flubber-quote {
-        padding: 8px 20px;
-      }
-      .text {
-        font-size: 16px;
-      }
-    }
-  }
-  @include MQ(lg) {
-    padding-top: 120px;
-    padding-bottom: 40px;
-    .title {
-      font-size: 40px;
-    }
-    .occupation {
-      font-size: 24px;
-    }
-    .good {
-      font-size: 20px;
-    }
-  }
-  @include MQ(xl) {
-    padding-top: 150px;
-    padding-bottom: 40px;
-    .title {
-      font-size: 42px;
-    }
-    .occupation {
-      font-size: 30px;
-    }
-    .good {
-      font-size: 24px;
-    }
-  }
-}
-
-// 技能
-.skill {
-  overflow: hidden;
-  width: 100%;
-  background-color: #f8f9fd;
-  .skill-bg {
-    background-attachment: scroll,fixed;
-    background-image: linear-gradient(0deg,rgba(248,249,253,.7),#f8f9fd),url('../assets/image/content-bg.svg');
-    background-position: top,bottom;
-    background-repeat: no-repeat;
-    background-size: contain;
-    color: #36393f;
-    font-weight: 500;
-    min-height: 550px;
-    width: 100%;
-  }
-
-  .title {
-    padding: 10px 0 40px 0;
-    margin: 0;
-    font-size: 24px;
-    font-weight: normal;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    color: #fff;
     text-align: center;
-  }
-  .list {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
-    box-shadow: 0 9px 30px 0 rgba(35,39,42,.1);
-    padding: 20px 20px 40px;
-    background: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all .3s;
-    &:hover {
-      .icon {
-        opacity: 1;
-      }
-    }
-    .icon {
-      font-size: 50px;
-      color: $color-primary;
-      opacity: .7;
-      transition: all .2s;
-    }
-    .tag {
-      width: 100%;
-      text-align: center;
-    }
-    .list-desc {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      padding: 0 15px;
-      background-color: #fff;
-      transition: all .3s;
-    }
-  }
-  @include MQ(md) {
-    .skill-bg {
-      padding-top: 30px;
-      padding-bottom: 120px;
-    }
-    .list {
-      margin: 10px 10px 60px 10px;
-      padding: 30px 20px 50px;
-    }
-  }
-  @include MQ(lg) {
-    .skill-bg {
-      padding-top: 50px;
-      padding-bottom: 200px;
-    }
-  }
-  @include MQ(xl) {
-    .skill-bg {
-      padding-top: 100px;
-      padding-bottom: 350px;
-    }
-    .list {
-      margin: 20px 20px 70px 20px;
-      padding: 40px 20px 60px;
-    }
-  }
-}
-
-// 作品
-.works {
-  margin-top: 120px;
-  width: 100%;
-  .list-1,
-  .list-2 {
-    position: relative;
-    background-color: $color-primary;
     &:before {
       content: "";
       position: absolute;
-      top: -200px;
-      left: -10%;
-      right: -10%;
-      width: 120%;
-      height: 360px;
-      transform: rotate(8deg);
-      background-color: $color-primary;
+      top: 0;
+      left: 0;
+      opacity: 0.2;
+      width: 100%;
+      height: 100%;
+      background-image: url("..//assets/image/top-bg.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      // background
     }
-  }
-  .list-2 {
-    background-color: $color-light;
-    &:before {
-      transform: rotate(-8deg);
-      background-color: $color-light;
+    .info {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 500px;
     }
-  }
-  // 兼容样式
-  .list-1:before {
-    display: none;
-  }
-  @include MQ(md) {
-    .list-1:before {
+    .title {
+      font-size: 30px;
+    }
+    .occupation {
+      font-size: 20px;
+    }
+    .good {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    // 鸭子在哔哔
+    .duck {
+      position: relative;
+      height: 300px;
+      .flubber-quote {
+        padding: 4px;
+      }
+      .text {
+        font-size: 12px;
+      }
+    }
+    // svg
+    .squadDivider-nJvGZ {
+      bottom: 0;
+      color: #ef5350;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+    .wave-1hkxOo {
       display: block;
     }
-  }
-  @include MQ(lg) {
-    margin-top: 50px;
-  }
-  @include MQ(xl) {
-    margin-top: 0;
-  }
-}
+    .wavePath-haxJK1 {
+      // animation: waveDividerAnimation-2m2aau 16s linear infinite alternate;
+    }
 
-@keyframes list-desc {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+    @keyframes waveDividerAnimation-2m2aau {
+      0% {
+        d: path(
+          "M826.337463,25.5396311 C670.970254,58.655965 603.696181,68.7870267 447.802481,35.1443383 C293.342778,1.81111414 137.33377,1.81111414 0,1.81111414 L0,150 L1920,150 L1920,1.81111414 C1739.53523,-16.6853983 1679.86404,73.1607868 1389.7826,37.4859505 C1099.70117,1.81111414 981.704672,-7.57670281 826.337463,25.5396311 Z"
+        );
+      }
 
+      50% {
+        d: path(
+          "M655.558582,28.4898877 C500.191373,61.6062216 422.833785,83.5422763 266.940085,49.8995879 C112.480383,16.5663637 84.0992497,8.02840272 0,44.7243294 L0,150.727527 L1920,150.727527 L1920,49.8995879 C1580.91676,-34.8808285 1438.10804,73.6768193 1148.0266,38.0019829 C857.945166,2.32714659 810.925791,-4.62644617 655.558582,28.4898877 Z"
+        );
+      }
+
+      to {
+        d: path(
+          "M842.322034,38.0019829 C686.954825,71.1183168 623.386282,53.08497 467.492582,19.4422816 C313.032879,-13.8909426 84.0992497,8.02840272 0,44.7243294 L0,150.727527 L1920,150.727527 L1920,76.8685643 C1512.23604,-35.3595639 1568.70222,67.4289432 1278.62078,31.7541069 C988.539347,-3.92072949 997.689243,4.88564905 842.322034,38.0019829 Z"
+        );
+      }
+    }
+
+    @include MQ(xs) {
+      .duck {
+        .flubber-quote {
+          padding: 6px 18px;
+        }
+        .text {
+          font-size: 14px;
+        }
+      }
+    }
+    @include MQ(md) {
+      .title {
+        font-size: 34px;
+      }
+      .good {
+        font-size: 18px;
+      }
+      .duck {
+        .flubber {
+          left: 10%;
+        }
+        .flubber-quote {
+          padding: 8px 20px;
+        }
+        .text {
+          font-size: 16px;
+        }
+      }
+    }
+    @include MQ(lg) {
+      padding-top: 120px;
+      padding-bottom: 40px;
+      .title {
+        font-size: 40px;
+      }
+      .occupation {
+        font-size: 24px;
+      }
+      .good {
+        font-size: 20px;
+      }
+    }
+    @include MQ(xl) {
+      padding-top: 150px;
+      padding-bottom: 40px;
+      .title {
+        font-size: 42px;
+      }
+      .occupation {
+        font-size: 30px;
+      }
+      .good {
+        font-size: 24px;
+      }
+    }
+  }
+
+  // 技能
+  .skill {
+    overflow: hidden;
+    width: 100%;
+    background-color: #f8f9fd;
+    .skill-bg {
+      background-attachment: scroll,fixed;
+      background-image: linear-gradient(0deg,rgba(248,249,253,.7),#f8f9fd),url('../assets/image/content-bg.svg');
+      background-position: top,bottom;
+      background-repeat: no-repeat;
+      background-size: contain;
+      color: #36393f;
+      font-weight: 500;
+      min-height: 550px;
+      width: 100%;
+    }
+
+    .title {
+      padding: 10px 0 40px 0;
+      margin: 0;
+      font-size: 24px;
+      font-weight: normal;
+      text-align: center;
+    }
+    .list {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px;
+      box-shadow: 0 9px 30px 0 rgba(35,39,42,.1);
+      padding: 20px 20px 40px;
+      background: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all .3s;
+      &:hover {
+        .icon {
+          opacity: 1;
+        }
+      }
+      .icon {
+        font-size: 50px;
+        color: $color-primary;
+        opacity: .7;
+        transition: all .2s;
+      }
+      .tag {
+        width: 100%;
+        text-align: center;
+      }
+      .list-desc {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 0 15px;
+        background-color: #fff;
+        transition: all .3s;
+      }
+    }
+    @include MQ(md) {
+      .skill-bg {
+        padding-top: 30px;
+        padding-bottom: 120px;
+      }
+      .list {
+        margin: 10px 10px 60px 10px;
+        padding: 30px 20px 50px;
+      }
+    }
+    @include MQ(lg) {
+      .skill-bg {
+        padding-top: 50px;
+        padding-bottom: 200px;
+      }
+    }
+    @include MQ(xl) {
+      .skill-bg {
+        padding-top: 100px;
+        padding-bottom: 350px;
+      }
+      .list {
+        margin: 20px 20px 70px 20px;
+        padding: 40px 20px 60px;
+      }
+    }
+  }
+
+  // 作品
+  .works {
+    margin-top: 120px;
+    width: 100%;
+    .list-1,
+    .list-2 {
+      position: relative;
+      background-color: $color-primary;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        left: -10%;
+        right: -10%;
+        width: 120%;
+        height: 360px;
+        transform: rotate(8deg);
+        background-color: $color-primary;
+      }
+    }
+    .list-2 {
+      background-color: $color-light;
+      &:before {
+        transform: rotate(-8deg);
+        background-color: $color-light;
+      }
+    }
+    // 兼容样式
+    .list-1:before {
+      display: none;
+    }
+    @include MQ(md) {
+      .list-1:before {
+        display: block;
+      }
+    }
+    @include MQ(lg) {
+      margin-top: 50px;
+    }
+    @include MQ(xl) {
+      margin-top: 0;
+    }
+  }
+
+  @keyframes list-desc {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 </style>
