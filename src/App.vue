@@ -30,7 +30,7 @@
       <div class="page"></div>
     </div>
     <!-- 按钮 -->
-    <button class="menu-button" :class="{'menu-button--open': isButtonOpen}" @click="onOpenMenu">
+    <button class="menu-button" :class="{'menu-button--open': isButtonOpen}" v-show="getIsShowNav" @click="onOpenMenu">
       <span class="text">Menu</span>
     </button>
   </div>
@@ -38,6 +38,7 @@
 
 <script>
 import classie from "@/assets/js/classie.js";
+import { mapGetters } from 'vuex'
 
 export default {
   name: "app",
@@ -86,6 +87,11 @@ export default {
         },
       }
     };
+  },
+  computed: {
+    ...mapGetters([
+      'getIsShowNav'
+    ])
   },
   created() {},
   mounted() {
@@ -220,16 +226,20 @@ export default {
         position: absolute;
         top: 100%;
         left: 50%;
-        width: 30px;
+        z-index: 2;
+        margin-left: -20px;
+        border-radius: 4px;
+        width: 40px;
         height: 2px;
-        margin: 5px 0 0 -15px;
         background: #fff;
         transition: transform 0.3s;
-        transform: scale3d(0, 1, 1);
+        transform-origin: right;
+        transform: scaleX(0);
       }
       &:hover {
         &:before{
-          transform: scale3d(1, 1, 1);
+          transform-origin: left;
+          transform: scaleX(1);
         }
       }
     }
@@ -399,8 +409,8 @@ export default {
   @include MQ(md) {
     .menu-button {
       top: 30px;
-      right: auto;
-      left: 50px;
+      right: 10%;
+      margin-right: 16px;
       width: 40px;
       height: 36px;
     }

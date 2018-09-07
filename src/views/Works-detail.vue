@@ -3,11 +3,12 @@
     <!-- 头部 -->
     <div class="header">
       <div class="header-center">
-        <p class="header-title">标题</p>
+        <p class="header-title">{{data.title}}</p>
+        <p class="header-title-desc">{{data.titleDesc}}</p>
       </div>
       <div class="header-video">
         <video width="100%" height="100%" autoplay loop>
-          <source src="../assets/image/gallery/fgj-sys/inquiry/inquiry (3).mp4" type="video/mp4">
+          <source src="../assets/image/gallery/fgj-sys/inquiry-v-1.mp4" type="video/mp4">
           <p>您的浏览器不支持视频播放</p>
         </video>
       </div>
@@ -19,37 +20,26 @@
         <div class="info max">
           <article class="info-center">
             <h1 class="info-title">
-              <span class="info-title-color">标题</span>
-              其他内容介绍
+              <span class="info-title-color">{{data.subTitle}}</span>
+              {{data.subTitleDesc}}
             </h1>
             <p class="info-text">
-              多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局，多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局，多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局，多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局，多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局，多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局多栏布局
+              {{data.text}}
             </p>
           </article>
           <article class="info-table">
             <ul class="table">
-              <li class="table-list">
-                <h3 class="table-title">标题</h3>
-                <p class="table-desc">articlearticlearticle</p>
-              </li>
-              <li class="table-list">
-                <h3 class="table-title">标题</h3>
-                <p class="table-desc">articlearticlearticle</p>
-              </li>
-              <li class="table-list">
-                <h3 class="table-title">标题</h3>
-                <p class="table-desc">文字描述文字描述文字描述文字描述文字描述文字描述</p>
+              <li class="table-list" v-for="(item, index) in data.sideTable" :key="index">
+                <h3 class="table-title">{{item.title}}</h3>
+                <p class="table-desc">{{item.desc}}</p>
               </li>
             </ul>
           </article>
         </div>
       </section>
       <!-- 项目介绍 -->
-      <section class="item">
-        <gallery :imgData="inquiryData" parentClass="parent-galler-1"></gallery>
-      </section>
-      <section class="item">
-        <gallery :imgData="inquiryData" parentClass="parent-galler-2"></gallery>
+      <section class="item" v-for="(item, index) in data.children" :key="index">
+        <gallery :imgData="item" :parentClass="'parent-galler-' + index"></gallery>
       </section>
     </section>
     <!-- 关闭按钮 -->
@@ -64,26 +54,34 @@
 <script>
 
   import Gallery from '@/components/Gallery';
-  import { inquiryData, inquiryData2 } from '../data/inquiry.js'
+  import data from '../data/inquiry.js';
+  import { mapActions } from 'vuex';
 
   export default {
     name: 'works-detail',
     data() {
       return {
+        data: null,
       }
     },
     created() {
-      this.inquiryData = inquiryData;
-      this.inquiryData2 = inquiryData2;
+      this.setIsShowNav(false);     // 隐藏导航按钮
+      this.data = data;
     },
     methods: {
       // 关闭页面
       bindBack() {
         this.$router.back();
-      }
+      },
+      ...mapActions([
+        'setIsShowNav'
+      ])
     },
     components: {
       Gallery
+    },
+    destroyed() {
+      this.setIsShowNav(true);     // 销毁之后显示导航按钮
     }
   }
 </script>
@@ -132,6 +130,11 @@
       font-size: 30px;
       color: #fff;
       letter-spacing: 2px;
+    }
+    .header-title-desc {
+      padding-top: 20px;
+      font-size: 16px;
+      color: #fff;
     }
     .header-video {
       position: absolute;
@@ -209,6 +212,7 @@
       font-size: 16px;
       color: #444;
       line-height: 1.5;
+      text-indent: 2em;
     }
     .info-table {
       margin-top: 0;
@@ -228,6 +232,7 @@
     .table-desc {
       font-size: 14px;
       color: #666;
+      line-height: 1.4;
     }
     @include MQ(md) {
       .info-center {

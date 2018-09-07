@@ -13,7 +13,7 @@
                   <ul class="slider-one-imgs">
                     <li class="slider-one-img" v-for="(item, index) in imgData" :key="index">
                       <img :src="item.url" :alt="item.title" v-if="item.type === 'img'">
-                      <video width="100%" height="100%" preload :poster="item.poster" controls v-else @click="bindVideoToggle($event, item)">
+                      <video width="100%" height="100%" :poster="item.poster" controls v-else @click="bindVideoToggle($event, item)">
                         <source :src="item.url" type="video/mp4">
                         <p>您的浏览器不支持视频播放</p>
                       </video>
@@ -86,8 +86,8 @@
     methods: {
       // 点击视频播放或取消
       bindVideoToggle(event, item) {
-        item.isPlay ? event.currentTarget.pause() : event.currentTarget.play();
-        item.isPlay = !item.isPlay;
+        // item.isPlay ? event.currentTarget.pause() : event.currentTarget.play();
+        // item.isPlay = !item.isPlay;
       }
     },
     components: {
@@ -117,18 +117,25 @@
       transform: rotate(8deg);
     }
   }
-  .parent-galler-1 {
+  .parent-galler-0 {
     background-color: $color-primary;
     &:before {
       background-color: $color-primary;
       transform: rotate(8deg);
     }
   }
-  .parent-galler-2 {
+  .parent-galler-1 {
     background-color: #212121;
     &:before {
       background-color: #212121;
       transform: rotate(-8deg);
+    }
+  }
+  .parent-galler-2 {
+    background-color: #6ab4ff;
+    &:before {
+      background-color: #6ab4ff;
+      transform: rotate(8deg);
     }
   }
 
