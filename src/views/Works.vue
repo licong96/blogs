@@ -1,31 +1,81 @@
 <template>
   <div class="works">
-    <div class="header">
-      <!-- <h4 class="header-title">我的作品</h4> -->
-    </div>
     <div class="content">
-      <ul class="content-wrap">
-        <li class="content-list" @click="bindOpenDetail('1')">
-          项目一
-        </li>
-      </ul>
+      <div class="row">
+        <div class="col-lg-4 col-md-6" v-for="(item, index) in worksData" :key="index">
+          <div class="list" @click="bindOpenDetail(item)">
+            <!-- <div class="list__bg" :style="'backgroundImage: url('+item.img+')'"></div> -->
+            <div class="list__content">
+              <h3 class="list__title">{{item.title}}</h3>
+              <p class="list__desc">{{item.desc}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
     name: 'works',
+    data() {
+      return {
+        worksData: [
+          {
+            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
+            id: 0,
+            title: '房管家系统',
+            desc: '描述',
+          }, {
+            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
+            id: 1,
+            title: '小程序',
+            desc: '描述',
+          }, {
+            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
+            title: '香菇街',
+            desc: '描述',
+            link: 'https://licong96.github.io/work/women/#/list'
+          }, {
+            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
+            title: '省市区选择器',
+            desc: '描述',
+            link: 'https://licong96.github.io/work/lc-city-selector/index.html'
+          }, {
+            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
+            title: 'webpack项目',
+            desc: '使用webpack组件化开发的房产平台',
+            link: 'https://github.com/licong96/fgj-website'
+          }, {
+            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
+            title: '移动端路演项目',
+            desc: '创业项目',
+            link: 'https://github.com/licong96/myzt-up-show'
+          }
+        ]
+      }
+    },
+    created() {
+      this.setPageColor('#ef5350');
+    },
     methods: {
       // 打开详细页
       bindOpenDetail(item) {
-        console.log(item)
-        this.$router.push({
-          path: '/works/' + item
-        })
-      }
+        if (item.link) {
+          window.open(item.link);
+        } else {
+          this.$router.push({
+            path: '/works/' + item.id
+          });
+        }
+      },
+      ...mapActions([
+        'setPageColor'
+      ])
     }
   }
 </script>
@@ -34,14 +84,9 @@
   @import "../assets/scss/mixin.scss";
 
   .works {
+    padding-top: 66px;
     width: 100%;
     min-height: 100vh;
-    background-color: #fff;
-  }
-  .header {
-    height: 122px;
-    line-height: 122px;
-    background-color: $color-primary;
   }
   .header-title {
     margin: 0;
@@ -54,13 +99,49 @@
     max-width: 950px;
     overflow: hidden;
   }
-  .content-list {
-    margin: 20px 0;
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: 0 0.4rem 0.8rem -0.1rem rgba(0,32,128,.1), 0 0 0 1px #f0f2f7;
-    line-height: 1.8;
-    font-size: 18px;
-    background: #fff;
+  .list {
+    overflow: hidden;
+    position: relative;
+    padding-top: 100%;
+  }
+  .list__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .list__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 20px;
+    border-radius: 6px;
+    // background-color: rgba(0, 0, 0, .5);
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .list__title {
+    font-size: 20px;
+    color: #333;
+  }
+  .list__desc {
+    padding-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  @include MQ(md) {
+    .works {
+      padding-top: 96px;
+    }
   }
 </style>

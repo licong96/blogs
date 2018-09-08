@@ -78,7 +78,6 @@
     created() {
       this.setPageColor('#ef5350');
       this.inquiryData = inquiryData;
-      console.log('home')
     },
     mounted() {
       // InitFlubber(); // 一只鸭子在哔哔

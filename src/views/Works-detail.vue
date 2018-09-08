@@ -54,19 +54,30 @@
 <script>
 
   import Gallery from '@/components/Gallery';
-  import data from '../data/inquiry.js';
+  import inquiryData from '../data/inquiry.js';
   import { mapActions } from 'vuex';
 
   export default {
     name: 'works-detail',
     data() {
       return {
-        data: null,
+        data: {},
       }
     },
     created() {
+      
+      console.log(this.$route.params)
+      const id = this.$route.params.id;
+
+      switch(id) {
+        case '0':
+          this.data = inquiryData;
+        break;
+        default:
+          this.bindBack();
+      }
+
       this.setIsShowNav(false);     // 隐藏导航按钮
-      this.data = data;
     },
     methods: {
       // 关闭页面
