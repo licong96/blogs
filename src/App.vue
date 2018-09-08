@@ -4,10 +4,10 @@
     <nav class="pages-nav" :class="{'pages-nav--open': isNavOpen}">
       <div class="container flex-center">
         <div class="row">
-          <div class="col-md-3 nav-link" @click="bindNavTo('home')">首页</div>
-          <div class="col-md-3 nav-link" @click="bindNavTo('skill')">技能</div>
-          <div class="col-md-3 nav-link" @click="bindNavTo('works')">作品</div>
-          <div class="col-md-3 nav-link" @click="bindNavTo('about')">关于</div>
+          <div class="col-md-4 nav-link" @click="bindNavTo('home')">首页</div>
+          <!-- <div class="col-md-3 nav-link" @click="bindNavTo('skill')">技能</div> -->
+          <div class="col-md-4 nav-link" @click="bindNavTo('works')">作品</div>
+          <div class="col-md-4 nav-link" @click="bindNavTo('about')">关于</div>
         </div>
         <div class="row social">
           <div class="col-md-12 nav-social">
@@ -23,14 +23,14 @@
     </nav>
     <!-- 内容 -->
     <div class="pages-stack" :class="{'pages-stack--open': isStackOpen}">
-      <div class="page">
+      <div class="page" :style="{backgroundColor: getPageColor}">
         <router-view></router-view>
       </div>
-      <div class="page"></div>
-      <div class="page"></div>
+      <div class="page" :style="{backgroundColor: getPageColor}"></div>
+      <div class="page" :style="{backgroundColor: getPageColor}"></div>
     </div>
     <!-- 按钮 -->
-    <button class="menu-button" :class="{'menu-button--open': isButtonOpen}" v-show="getIsShowNav" @click="onOpenMenu">
+    <button class="menu-button" :class="{'menu-button--open': isButtonOpen, 'white': getPageColor === '#fff'}" v-show="getIsShowNav" @click="onOpenMenu">
       <span class="text">Menu</span>
     </button>
   </div>
@@ -85,15 +85,17 @@ export default {
           pointer: 60,
           excur: 700
         },
-      }
+      },
     };
   },
   computed: {
     ...mapGetters([
-      'getIsShowNav'
+      'getIsShowNav',
+      'getPageColor'
     ])
   },
-  created() {},
+  created() {
+  },
   mounted() {
     this.pages = document.querySelectorAll(".page");
     this.elHtml = document.getElementsByTagName('html')[0];   // 获取html根元素，用来禁止页面滑动
@@ -333,13 +335,13 @@ export default {
     min-height: 568px;
     min-height: 100vh;
     pointer-events: auto;
-    background-color: #ef5350;
+    background-color: $color-primary;
     box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s, opacity 0.5s;
+    transition: all 0.5s;
   }
   .pages-stack--open .page {
     cursor: pointer;
-    transition: transform 0.5s, opacity 0.5s;
+    transition: all 0.5s;
     transition-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
   }
   .page--inactive {
@@ -377,6 +379,13 @@ export default {
       pointer-events: none;
       transition: transform 0.25s;
       transform-origin: 50% 50%;
+    }
+    &.white {
+      &:before,
+      &::after,
+      .text {
+        background: $color-primary;
+      }
     }
     .text {
       overflow: hidden;

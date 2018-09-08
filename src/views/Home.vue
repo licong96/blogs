@@ -32,10 +32,12 @@
           <div class="row">
             <div class="col-lg-4 col-md-6" v-for="(item, index) in skillData" :key="index">
               <div class="list" :class="item.isShowDesc ? 'list--show' : ''" @click="clickSkillList(item)">
-                <svg class="icon" aria-hidden="true">
-                  <use :xlink:href="item.icon"></use>
-                </svg>
-                <p class="tag">{{item.title}}</p>
+                <div class="list__text">
+                  <svg class="icon" aria-hidden="true">
+                    <use :xlink:href="item.icon"></use>
+                  </svg>
+                  <p class="tag">{{item.title}}</p>
+                </div>
                 <!-- 基本介绍 -->
                 <div class="list-desc">
                   <p class="list-desc-p">{{item.desc}}</p>
@@ -61,35 +63,22 @@
 <script>
   // import InitFlubber from "../assets/js/flubber/index";
   import Gallery from '@/components/Gallery';
-  import inquiryData from '../data/inquiry.js'
+  import inquiryData from '../data/inquiry';
+  import skillData from '../data/skill';
+  import { mapActions } from 'vuex';
 
   export default {
     name: "home",
     data() {
       return {
         inquiryData: {},
-        skillData: [
-          {
-            title: 'HTML',
-            desc: '浏览器内核、渲染原理、依赖管理、兼容性、html5（本地存储、多媒体、语义化标签、新的属性、新的API）。',
-            icon: '#icon-html',
-            isShowDesc: false,
-          }, {
-            title: 'CSS',
-            desc: '盒模型、文档流、选择器、继承、权重、层叠上下文、布局（弹性、固定、流式、浮动、定位、响应式）、常见的hack、BFC、BEM、CSS Modules、CSS预处理器、CSS3常用属性。垂直外边距合并就有三种情况，还有很多没见过的属性，水太深了，不敢说精通CSS。',
-            icon: '#icon-css',
-            isShowDesc: false,
-          }, {
-            title: 'JavaScript',
-            desc: '机制提升、类型转换、词法作用域、闭包、对象、函数、正则表达式、原型、原型链继承、this、class、回调、异步、事件循环机制、事件委托、内存泄漏、设计模式、单元测试、模板引擎、常用的ES6语法和API、Fetch、Http、同源策略、数据Mock、DOM、BOM。 Modules、CSS预处理器、CSS3常用属性。垂直外边距合并就有三种情况，还有很多没见过的属性，水太深了，不敢说精通CSS。',
-            icon: '#icon-html',
-            isShowDesc: false,
-          }
-        ]
+        skillData: skillData
       }
     },
     created() {
+      this.setPageColor('#ef5350');
       this.inquiryData = inquiryData;
+      console.log('home')
     },
     mounted() {
       // InitFlubber(); // 一只鸭子在哔哔
@@ -97,7 +86,10 @@
     methods: {
       clickSkillList(item) {
         item.isShowDesc ? item.isShowDesc = false : item.isShowDesc = true;
-      }
+      },
+      ...mapActions([
+        'setPageColor'
+      ])
     },
     components: {
       Gallery
@@ -282,7 +274,7 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
       box-shadow: 0 9px 30px 0 rgba(35,39,42,.1);
       min-height: 150px;
       background: #fff;
@@ -299,9 +291,22 @@
           opacity: 0;
           transform: scale(0);
         }
-        .tag {
-          transform: translate3d(0, -80px, 0);
+        .list__text {
+          transform: translate3d(0, -76px, 0);
         }
+      }
+      .list__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 80px;
+        background-color: #fff;
+        transform: translate3d(0, 0, 0);
+        transition: transform .3s;
       }
       .icon {
         font-size: 50px;
@@ -309,15 +314,12 @@
         transition: all .3s;
       }
       .tag {
-        position: relative;
-        z-index: 2;
         margin-top: 10px;
+        margin-bottom: 10px;
         width: 100%;
         font-size: 16px;
         text-align: center;
-        transform: translate3d(0, 0, 0);
         background-color: #fff;
-        transition: transform .3s;
       }
       .list-desc {
         overflow-x: hidden;
@@ -328,7 +330,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        padding: 50px 15px 15px 15px;
+        padding: 40px 15px 15px 15px;
         opacity: 0;
         transform: translate3d(0, 100%, 0);
         transition: transform .3s, opacity .3s;
@@ -346,12 +348,6 @@
       }
       .list {
         margin: 10px 10px 60px 10px;
-        padding: 30px 20px 50px;
-        &.list--show {
-          .tag {
-            transform: translateY(-70px);
-          }
-        }
       }
     }
     @include MQ(lg) {
@@ -366,12 +362,6 @@
       }
       .list {
         margin: 20px 20px 70px 20px;
-        padding: 40px 20px 60px;
-        &.list--show {
-          .tag {
-            transform: translateY(-80px);
-          }
-        }
       }
     }
   }
