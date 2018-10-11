@@ -1,18 +1,13 @@
 <template>
   <div class="works">
-    <div class="content">
-      <div class="row">
-        <div class="col-lg-4 col-md-6" v-for="(item, index) in worksData" :key="index">
-          <div class="list" @click="bindOpenDetail(item)">
-            <!-- <div class="list__bg" :style="'backgroundImage: url('+item.img+')'"></div> -->
-            <div class="list__content">
-              <h3 class="list__title">{{item.title}}</h3>
-              <p class="list__desc">{{item.desc}}</p>
-            </div>
-          </div>
+    <section class="item__wrap">
+      <div class="item__space" v-for="(item, index) in worksData" :key="index">
+        <div class="item" @click="bindOpenDetail(item)">
+          <h3 class="item__title">{{item.title}}</h3>
+          <p class="item__desc">{{item.desc}}</p>
         </div>
       </div>
-    </div>
+    </section>
     <router-view></router-view>
   </div>
 </template>
@@ -26,34 +21,28 @@
       return {
         worksData: [
           {
-            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
             id: 0,
             title: '房管家系统',
-            desc: '描述',
+            desc: '我的得意之作',
           }, {
-            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
             id: 1,
-            title: '小程序',
-            desc: '描述',
+            title: '小程序版的管理系统',
+            desc: '小程序版的管理系统',
           }, {
-            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
             title: '香菇街',
-            desc: '描述',
-            link: 'https://licong96.github.io/work/women/#/list'
+            desc: '用jsonp抓取蘑菇街数据来渲染的一个纯前端项目 ',
+            link: 'https://licong96.github.io/work/women/#/item'
           }, {
-            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
             title: '省市区选择器',
-            desc: '描述',
-            link: 'https://licong96.github.io/work/lc-city-selector/index.html'
+            desc: '无依赖的三级联动选择器插件',
+            link: 'https://github.com/licong96/lc-city-selector'
           }, {
-            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
             title: 'webpack项目',
             desc: '使用webpack组件化开发的房产平台',
             link: 'https://github.com/licong96/fgj-website'
           }, {
-            // img: require('@/assets/image/gallery/fgj-sys/inquiry/poster.png'),
             title: '移动端路演项目',
-            desc: '创业项目',
+            desc: '创业项目路演平台',
             link: 'https://github.com/licong96/myzt-up-show'
           }
         ]
@@ -84,64 +73,64 @@
   @import "../assets/scss/mixin.scss";
 
   .works {
-    padding-top: 66px;
-    width: 100%;
-    min-height: 100vh;
-  }
-  .header-title {
-    margin: 0;
-    text-align: center;
-    color: #fff;
-  }
-  .content {
+    overflow: hidden;
     margin: 0 auto;
-    padding: 0 15px;
-    max-width: 950px;
-    overflow: hidden;
+    padding-top: 66px;
+    max-width: 960px;
   }
-  .list {
-    overflow: hidden;
-    position: relative;
-    padding-top: 100%;
-  }
-  .list__bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .list__content {
+  .item__wrap {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 20px;
-    border-radius: 6px;
-    // background-color: rgba(0, 0, 0, .5);
-    background-color: #fff;
-    cursor: pointer;
+    flex-wrap: wrap;
   }
-  .list__title {
-    font-size: 20px;
-    color: #333;
+  .item__space {
+    flex: 0 0 100%;
+    padding: 15px 30px;
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      width: 100%;
+      height: 150px;
+      background-color: #fff;
+      box-shadow: 0 9px 30px 0 rgba(35, 39, 42, 0.1);
+      cursor: pointer;
+    }
+    .item__title {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+    .item__desc {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      text-align: center;
+    }
   }
-  .list__desc {
-    padding-top: 10px;
-    font-size: 14px;
-    color: #666;
+  @include MQ(sm) {
+    .item__wrap {
+      padding: 0 20px;
+    }
+    .item__space {
+      flex: 0 0 50%;
+      .item {
+        height: 180px;
+      }
+    }
   }
   @include MQ(md) {
     .works {
-      padding-top: 96px;
+      padding-top: 80px;
+    }
+    .item__space {
+      flex: 0 0 33.33%;
+      padding: 20px;
+      .item {
+        height: 200px;
+      }
     }
   }
 </style>

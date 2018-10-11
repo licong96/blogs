@@ -6,11 +6,14 @@
         <p class="header-title">{{data.title}}</p>
         <p class="header-title-desc">{{data.titleDesc}}</p>
       </div>
-      <div class="header-video">
+      <div class="header-video" v-if="data.headerVideo.type === 'video'">
         <video width="100%" height="100%" autoplay loop>
-          <source src="../assets/image/gallery/fgj-sys/inquiry-v-1.mp4" type="video/mp4">
+          <source :src="data.headerVideo.url" type="video/mp4">
           <p>您的浏览器不支持视频播放</p>
         </video>
+      </div>
+      <div class="header-video" v-if="data.headerVideo.type === 'img'">
+        <img :src="data.headerVideo.url" alt="">
       </div>
     </div>
     <!-- 内容 -->
@@ -55,6 +58,7 @@
 
   import Gallery from '@/components/Gallery';
   import inquiryData from '../data/inquiry.js';
+  import uzhikeData from '../data/uzhike.js';
   import { mapActions } from 'vuex';
 
   export default {
@@ -65,13 +69,14 @@
       }
     },
     created() {
-      
-      console.log(this.$route.params)
       const id = this.$route.params.id;
 
       switch(id) {
         case '0':
           this.data = inquiryData;
+        break;
+        case '1':
+          this.data = uzhikeData;
         break;
         default:
           this.bindBack();
@@ -82,7 +87,13 @@
     methods: {
       // 关闭页面
       bindBack() {
-        this.$router.back();
+        if (window.history.length <= 1) {
+          this.$router.replace({
+            path: '/works'
+          });
+        } else {
+          this.$router.back();
+        }
       },
       ...mapActions([
         'setIsShowNav'

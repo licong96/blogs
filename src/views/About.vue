@@ -183,7 +183,6 @@
         </div>
       </div>
     </section>
-    
     <section class="chunk">
       <h2 class="chunk__title">开源项目和作品</h2>
       <div class="chunk__content">
@@ -217,7 +216,6 @@
       this.setPageColor('#fff');
     },
     mounted() {
-      // InitFlubber(); // 一只鸭子在哔哔
     },
     methods: {
       clickSkillList(item) {

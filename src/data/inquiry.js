@@ -1,9 +1,13 @@
 export default {
   title: '房管家后台管理系统',
-  titleDesc: '项目介绍',
+  titleDesc: '',
   subTitle: '房管家后台管理系统',
   subTitleDesc: '是房管家提供给合作公司、中介、个人使用的客户管理和楼盘报备等功能的管理系统',
-  text: '身为公司唯一的前端，我很荣幸，负责前端还要兼设计，开发这个项目是既痛苦，又快乐。底层框架使用vue，使用了大量es6语法和api，为了兼容低版本设备添加了polyfill，选了element-ui，配置了按需引入。客户列表，楼盘列表，抢客列表等都使用了移动端的滑动插件better-scroll。图表使用了echarts，数据请求用了axios，添加了拦截器。因为是移动端，所以弹性布局用的比较多，CSS预处理器用的是SCSS，统一管理颜色和工具方法。里面也用到了百度地图和微信API。',
+  text: '底层框架使用vue，使用了大量es6语法和api，为了兼容低版本设备添加了polyfill，选了element-ui，配置了按需引入。客户列表，楼盘列表，抢客列表等都使用了移动端的滑动插件better-scroll。图表使用了echarts，数据请求用了axios，添加了拦截器。因为是移动端，所以弹性布局用的比较多，CSS预处理器用的是SCSS，统一管理颜色和工具方法。里面也用到了百度地图和微信API。',
+  headerVideo: {
+    type: 'video',
+    url: require('../assets/image/gallery/fgj-sys/inquiry-v-1.mp4'),
+  },
   sideTable: [
     {
       title: '报备',

@@ -1,28 +1,30 @@
 <template>
   <div id="app">
     <!-- 导航 -->
-    <nav class="pages-nav" :class="{'pages-nav--open': isNavOpen}">
-      <div class="container flex-center">
-        <div class="row">
-          <div class="col-md-4 nav-link" @click="bindNavTo('home')">首页</div>
-          <!-- <div class="col-md-3 nav-link" @click="bindNavTo('skill')">技能</div> -->
-          <div class="col-md-4 nav-link" @click="bindNavTo('works')">作品</div>
-          <div class="col-md-4 nav-link" @click="bindNavTo('about')">关于</div>
-        </div>
-        <div class="row social">
-          <div class="col-md-12 nav-social">
-            <a class="link" href="https://github.com/licong96" target="_blank">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-icongithub"></use>
-              </svg>
-              GitHub
-            </a>
+    <section class="nav__wrap">
+      <nav class="pages-nav" :class="{'pages-nav--open': isNavOpen}">
+        <div class="container flex-center">
+          <div class="row">
+            <div class="col-md-4 nav-link" @click="bindNavTo('home')">首页</div>
+            <!-- <div class="col-md-3 nav-link" @click="bindNavTo('skill')">技能</div> -->
+            <div class="col-md-4 nav-link" @click="bindNavTo('works')">作品</div>
+            <div class="col-md-4 nav-link" @click="bindNavTo('about')">关于</div>
+          </div>
+          <div class="row social">
+            <div class="col-md-12 nav-social">
+              <a class="link" href="https://github.com/licong96" target="_blank">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-icongithub"></use>
+                </svg>
+                GitHub
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </section>
     <!-- 内容 -->
-    <div class="pages-stack" :class="{'pages-stack--open': isStackOpen}">
+    <div class="pages-stack" :class="{'pages-stack--open': isStackOpen}" @click="bindCloseNav">
       <div class="page" :style="{backgroundColor: getPageColor}">
         <router-view></router-view>
       </div>
@@ -105,6 +107,12 @@ export default {
     }
   },
   methods: {
+    // 关闭导航菜单
+    bindCloseNav() {
+      if (this.isNavOpen) {
+        this.onOpenMenu();
+      }
+    },
     // 导航跳转
     bindNavTo(path) {
       this.onOpenMenu();
@@ -190,6 +198,14 @@ export default {
 <style scoped lang="scss">
   @import "./assets/scss/mixin.scss";
 
+  .nav__wrap {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450px;
+  }
   @include MQ(md) {
     .flex-center {
       display: flex;

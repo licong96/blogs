@@ -8,7 +8,6 @@
             <div class="top"><div><span class="camera"></span><span class="speaker"></span></div></div>
             <div class="screen">
               <div class="screens slider-one">
-
                 <figure>
                   <ul class="slider-one-imgs">
                     <li class="slider-one-img" v-for="(item, index) in imgData" :key="index">
@@ -20,27 +19,23 @@
                     </li>
                   </ul>
                 </figure>
-                
                 <ul class="slider-one-imgs">
                   <li class="slider-one-background-img" v-for="(item, index) in imgData" :key="index">
                     <img :src="item.url" :alt="item.title" v-if="item.type === 'img'">
                     <img :src="item.poster" :alt="item.title" v-else>
                   </li>
                 </ul>
-
               </div> 
             </div>
             <div class="bottom"><div></div></div>
           </div>
         </figure>
-
         <div class="pagination pag-1">
           <ul>
             <li class="" v-for="(item, index) in imgData" :key="index">{{index + 1}}</li>
           </ul>
         </div>
       </div>
-
       <figcaption> 
         <ul class="first-display-descp">
           <li class="" v-for="(item, index) in imgData" :key="index">
@@ -49,7 +44,6 @@
           </li>
         </ul>
       </figcaption>   
-
     </div>
   </section>
 </template>

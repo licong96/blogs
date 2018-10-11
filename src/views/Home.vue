@@ -9,16 +9,17 @@
       </div>
       <!-- 一只鸭子在哔哔 -->
       <div class="duck">
+        <h2 class="title">你好！</h2>
         <div class="flubber">
           <div class="flubber-guy">
             <div class="flubber-eyes" style="transform: rotate(-27.4784deg);"></div>
           </div>
-          <ul class="flubber-quote show">
+          <!-- <ul class="flubber-quote show">
             <li class="text" style="display: list-item;;">你好！</li>
             <li class="text" style="display: none">我是黎聪</li>
             <li class="text" style="display: none;">一位略懂前端的开发者</li>
             <li class="text" style="display: none;">这里有我的介绍</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
       <!-- svg -->
@@ -50,19 +51,19 @@
     </section>
     <!-- works -->
     <section class="works">
-      <div class="list-1">
-        <gallery :imgData="inquiryData.children[0]" parentClass="parent-galler-0"></gallery>
+      <div class="works__item">
+        <gallery :imgData="uzhikeData.children[0]" parentClass="parent-galler-0"></gallery>
       </div>
-      <div class="list-2">
-        <!-- <gallery :imgData="inquiryData2" parentClass="parent-galler-2"></gallery> -->
+      <div class="works__item">
+        <gallery :imgData="inquiryData.children[0]" parentClass="parent-galler-1"></gallery>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-  // import InitFlubber from "../assets/js/flubber/index";
   import Gallery from '@/components/Gallery';
+  import uzhikeData from '../data/uzhike';
   import inquiryData from '../data/inquiry';
   import skillData from '../data/skill';
   import { mapActions } from 'vuex';
@@ -72,15 +73,16 @@
     data() {
       return {
         inquiryData: {},
+        uzhikeData: {},
         skillData: skillData
       }
     },
     created() {
       this.setPageColor('#ef5350');
+      this.uzhikeData = uzhikeData;
       this.inquiryData = inquiryData;
     },
     mounted() {
-      // InitFlubber(); // 一只鸭子在哔哔
     },
     methods: {
       clickSkillList(item) {
@@ -141,6 +143,9 @@
     .duck {
       position: relative;
       height: 300px;
+      .title {
+        font-size: 24px;
+      }
       .flubber-quote {
         padding: 4px;
       }
@@ -364,9 +369,6 @@
       }
     }
   }
-
-  // 作品
-  // .works {}
 
   @keyframes list-desc {
     0% {
