@@ -7,6 +7,8 @@
 
 [JS基础系列-木易杨](https://github.com/yygmind/blog)
 
+[JavaScript设计模式系列](https://github.com/ZengLingYong/Blog)
+
 [JavaScript常用八种继承方案](https://juejin.im/post/5bcb2e295188255c55472db0)
 
 [图片懒加载](https://github.com/dwqs/blog/issues/74)
