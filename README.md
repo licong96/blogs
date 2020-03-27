@@ -1,11 +1,5 @@
 # 一天一个知识点
 
-## HTML
-
-[从输入url到页面展示发生了什么](https://www.zhiqiang2726.com/2019/08/06/%E9%9D%A2%E8%AF%95%E9%A2%98-%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/)
-
-## CSS
-
 
 ## JS
 
@@ -14,3 +8,13 @@
 [JS基础系列-木易杨](https://github.com/yygmind/blog)
 
 [JavaScript常用八种继承方案](https://juejin.im/post/5bcb2e295188255c55472db0)
+
+[图片懒加载](https://github.com/dwqs/blog/issues/74)
+
+
+## CSS
+
+
+## HTML
+
+[从输入url到页面展示发生了什么](https://www.zhiqiang2726.com/2019/08/06/%E9%9D%A2%E8%AF%95%E9%A2%98-%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/)
