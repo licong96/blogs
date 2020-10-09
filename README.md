@@ -31,10 +31,15 @@
 ## TS
 [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
 
+## react
+[React 原理解析](https://yuchengkai.cn/react/)
+
 ## 关注点
 视频相关，在线上课相关
 
 [浏览器禁止声音自动播放之后](https://juejin.im/post/5af7129bf265da0b8262df4c)
 
-## 
+## 其它
 [进阶指南](https://www.cxymsg.com/)
+[前端进阶之路](https://yuchengkai.cn/docs/frontend/)
+[参考知识体系](https://www.processon.com/view/link/5c64d495e4b025fe7c964ca0#map)
