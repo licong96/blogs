@@ -25,8 +25,14 @@
 
 ## HTML
 
-[从输入url到页面展示发生了什么](https://www.zhiqiang2726.com/2019/08/06/%E9%9D%A2%E8%AF%95%E9%A2%98-%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/)
+## 浏览器
+[ajax跨域，这应该是最全的解决方案了](https://segmentfault.com/a/1190000012469713)
 
+[从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://segmentfault.com/a/1190000012925872)
+
+[从输入URL到页面加载的过程？](https://segmentfault.com/a/1190000013662126)
+
+[从输入url到页面展示发生了什么](https://www.zhiqiang2726.com/2019/08/06/%E9%9D%A2%E8%AF%95%E9%A2%98-%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/)
 
 ## TS
 [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
