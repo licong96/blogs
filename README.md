@@ -1,4 +1,4 @@
-# 一些知识点
+# 一天一个知识点
 
 
 ## JS
@@ -39,7 +39,9 @@
 
 [浏览器禁止声音自动播放之后](https://juejin.im/post/5af7129bf265da0b8262df4c)
 
-## 其它
-[进阶指南](https://www.cxymsg.com/)
+## 更多集合
+[进阶指南](https://www.cxymsg.com/guide/)
 [前端进阶之路](https://yuchengkai.cn/docs/frontend/)
 [参考知识体系](https://www.processon.com/view/link/5c64d495e4b025fe7c964ca0#map)
+
+
