@@ -40,6 +40,9 @@
 ## react
 [React 原理解析](https://yuchengkai.cn/react/)
 
+## webpack
+[深入浅出Webpack](http://webpack.wuhaolin.cn/)
+
 ## 关注点
 视频相关，在线上课相关
 
