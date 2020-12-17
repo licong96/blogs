@@ -5,3 +5,5 @@
 [JS运行机制](https://github.com/licong96/blogs/issues/8#issue-745391195)
 
 [React Hook](https://github.com/licong96/blogs/issues/11#issue-753970671)
+
+[浏览器渲染](https://github.com/licong96/blogs/issues/6#issue-740642193)
